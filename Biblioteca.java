@@ -5,8 +5,16 @@ public class Biblioteca {
     private final List<Livro> livros = new ArrayList<>();
 
     public void adicionarLivro(Livro livro) {
-        livros.add(livro);
+
+    for (Livro l : livros) {
+        if (l.getIsbn().equals(livro.getIsbn())) {
+            throw new IllegalArgumentException("Livro já cadastrado (ISBN duplicado).\nRetornando ao menu...");
+            }
+        }
+
+    livros.add(livro);
     }
+
 
     public List<Livro> buscarPorTitulo(String titulo) {
         List<Livro> resultado = new ArrayList<>();
@@ -82,7 +90,7 @@ public class Biblioteca {
 
     public void listarLivros() {
         if (livros.isEmpty()) {
-            System.out.println("Nenhum livro cadastrado.");
+            System.out.println("\nNenhum livro cadastrado.");
         } else {
             for (Livro livro : livros) {
                 System.out.println(livro);
